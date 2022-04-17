@@ -4,7 +4,7 @@ USE library;
 
 -- Match id_country with country name.
 CREATE TABLE country (
-	id_country smallint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
+	id_country tinyint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
     country varchar(30) NOT NULL, -- Country name
     PRIMARY KEY (id_country)
 );
@@ -97,7 +97,7 @@ CREATE TABLE author (
     id_author smallint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
     first_name varchar(30) NULL, -- Author's first name
     last_name varchar(30) NOT NULL, -- Author's last name
-    id_country smallint unsigned NOT NULL, -- Foreign key (to references table country)
+    id_country tinyint unsigned NOT NULL, -- Foreign key (to references table country)
     PRIMARY KEY (id_author),
     FOREIGN KEY (id_country) REFERENCES country(id_country)
 );
