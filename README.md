@@ -4,9 +4,9 @@ A library database made in MySQL with books stock, authors, customers and loans.
 
 SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
-## Entity–relationship model
+## Entity–relationship diagram
 
-<div style="text-align:center"><img src="erm.png" /></div>
+<div style="text-align:center"><img src="erd.png" /></div>
 
 ## Data Structure
 
