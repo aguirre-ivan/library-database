@@ -37,7 +37,7 @@ CREATE TABLE book_status (
 	PRIMARY KEY (id_status)
 );
 
--- Library's customers info.
+-- Library customers info.
 CREATE TABLE customer (
 	id_customer smallint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
 	first_name varchar(30) NOT NULL, -- Customer name
@@ -62,7 +62,7 @@ CREATE TABLE book (
 	FOREIGN KEY (id_language) REFERENCES book_language(id_language)
 );
 
--- Match book copies with id_book from table book and its status from table book_status.
+-- Match book copies with id_book from book table and its status from book_status table.
 CREATE TABLE book_inventory (
 	id_book_inventory smallint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
 	id_book smallint unsigned NOT NULL, -- Foreign key (to references table book)
@@ -72,7 +72,7 @@ CREATE TABLE book_inventory (
 	FOREIGN KEY (id_status) REFERENCES book_status(id_status)
 );
 
--- Shows book copies storage location. With id_book_inventory (from table book_inventory), shows its shelf number and shelf_section number.
+-- Book copies storage location. With id_book_inventory (from book_inventory table), shows its shelf number and shelf_section number.
 CREATE TABLE storage_location (
 	id_book_inventory smallint unsigned NOT NULL, -- Foreign key (to references book_inventory)
 	shelf tinyint unsigned NOT NULL, -- Shelf number
@@ -102,7 +102,7 @@ CREATE TABLE author (
 	FOREIGN KEY (id_country) REFERENCES country(id_country)
 );
 
--- Books for author. Match id_author from table author with id_book from table book
+-- Books by author. Match id_author from author table with id_book from book table
 CREATE TABLE book_author (
 	id_author smallint unsigned NOT NULL, -- Foreign key (to references table author)
 	id_book smallint unsigned NOT NULL, -- Foreign key (to references table book)
@@ -110,7 +110,7 @@ CREATE TABLE book_author (
 	FOREIGN KEY (id_book) REFERENCES book(id_book)
 );
 
--- Books for category. Match id_category from table category with id_book from table book
+-- Books by category. Match id_category from category table with id_book from book table
 CREATE TABLE book_category (
 	id_category tinyint unsigned NOT NULL, -- Foreign key (to references table category)
 	id_book smallint unsigned NOT NULL, -- Foreign key (to references table book)
@@ -118,7 +118,7 @@ CREATE TABLE book_category (
 	FOREIGN KEY (id_book) REFERENCES book(id_book)
 );
 
--- Book return. Describes loans returned.
+-- Books returns. Describes loans (from loan table) returned.
 CREATE TABLE book_return (
 	id_book_return int unsigned NOT NULL AUTO_INCREMENT, -- Primary key
 	id_loan int unsigned NOT NULL, -- Foreign key (to references table loan)

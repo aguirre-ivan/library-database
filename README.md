@@ -12,12 +12,16 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ### Country table
 
+Match id_country with country name.
+
 | Column            | Type                                      | Description                         |
 | ----------------- | :---------------------------------------- | :---------------------------------- |
 | id_country        | tinyint unsigned NOT NULL AUTO_INCREMENT  | Primary Key for a Country           |
 | country           | varchar(30) NOT NULL                      | Country name                        |
 
 ### Category table
+
+Match id_category with category name.
 
 | Column            | Type                                      | Description                         |
 | ----------------- | :--------------------------               | :---------------------------------- |
@@ -26,12 +30,16 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ### Publisher table
 
+Match id_publisher with publisher name.
+
 | Column            | Type                                      | Description                         |
 | ----------------- | :--------------------------               | :---------------------------------- |
 | id_publisher      | smallint unsigned NOT NULL AUTO_INCREMENT | Primary Key for a publisher         |
 | publisher         | varchar(30) NOT NULL                      | Publisher name                      |
 
 ### Book language table
+
+Match id_language with language name.
 
 | Column            | Type                                      | Description                         |
 | ----------------- | :--------------------------               | :---------------------------------- |
@@ -40,12 +48,16 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ### Book status table
 
+Match id_status with book status. Book status can be borrowed, lost, destroyed, etc.
+
 | Column            | Type                                      | Description                         |
 | ----------------- | :--------------------------               | :---------------------------------- |
 | id_status         | tinyint unsigned NOT NULL AUTO_INCREMENT  | Primary Key for a book status       |
 | book_status       | varchar(30) NOT NULL                      | Book status name                    |
 
 ### Customer table
+
+Library customers info.
 
 | Column            | Type                                      | Description                         |
 | ----------------- | :---------------------------------------- | :---------------------------------- |
@@ -59,6 +71,8 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ### Book table
 
+Book info.
+
 | Column            | Type                                      | Description                         |
 | ----------------- | :---------------------------------------- | :---------------------------------- |
 | id_book           | smallint unsigned NOT NULL AUTO_INCREMENT | Primary Key for a book              |
@@ -70,6 +84,8 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ### Book inventory table
 
+Match book copies with id_book from book table and its status from book_status table.
+
 | Column            | Type                                      | Description                         |
 | ----------------- | :---------------------------------------- | :---------------------------------- |
 | id_book_inventory | smallint unsigned NOT NULL AUTO_INCREMENT | Primary Key for a book copy         |
@@ -78,6 +94,8 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ### Storage location table
 
+Book copies storage location. With id_book_inventory (from book_inventory table), shows its shelf number and shelf_section number.
+
 | Column            | Type                                      | Description                         |
 | ----------------- | :---------------------------------------- | :---------------------------------- |
 | id_book_inventory | smallint unsigned NOT NULL                | Foreign Key to book inventory table |
@@ -85,6 +103,8 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 | shelf_section     | tinyint unsigned NOT NULL                 | Shelf section number                |
 
 ### Loan table
+
+Describes library loans.
 
 | Column            | Type                                      | Description                         |
 | ----------------- | :---------------------------------------- | :---------------------------------- |
@@ -96,6 +116,8 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ### Author table
 
+Book authors info.
+
 | Column            | Type                                      | Description                         |
 | ----------------- | :---------------------------------------- | :---------------------------------- |
 | id_author         | smallint unsigned NOT NULL AUTO_INCREMENT | Primary Key for an author           |
@@ -105,6 +127,8 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ### Book author table
 
+Books by author. Match id_author from author table with id_book from book table.
+
 | Column            | Type                                      | Description                         |
 | ----------------- | :---------------------------------------- | :---------------------------------- |
 | id_author         | smallint unsigned NOT NULL                | Foreign Key to author table         |
@@ -112,12 +136,16 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ### Book category table
 
+Books by category. Match id_category from category table with id_book from book table.
+
 | Column            | Type                                      | Description                         |
 | ----------------- | :---------------------------------------- | :---------------------------------- |
 | id_category       | tinyint unsigned NOT NULL                 | Foreign Key to category table       |
 | id_book           | smallint unsigned NOT NULL                | Foreign Key to book table           |
 
 ### Book return table
+
+Books returns. Describes loans (from loan table) returned.
 
 | Column            | Type                                      | Description                         |
 | ----------------- | :---------------------------------------- | :---------------------------------- |
