@@ -6,7 +6,7 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ## Entity–relationship diagram
 
-<div style="text-align:center"><img src="erd.png" /></div>
+<div style="text-align:center"><img src="entity-relationship-diagram.png" /></div>
 
 🔑: Primary Key
 
