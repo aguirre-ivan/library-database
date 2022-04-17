@@ -11,7 +11,7 @@ CREATE TABLE country (
 
 -- Match id_category with category name.
 CREATE TABLE category (
-	id_category smallint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
+	id_category tinyint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
     category varchar(30) NOT NULL, -- Book category or genre
     PRIMARY KEY (id_category)
 );
@@ -112,7 +112,7 @@ CREATE TABLE book_author (
 
 -- Books for category. Match id_category from table category with id_book from table book
 CREATE TABLE book_category (
-    id_category smallint unsigned NOT NULL, -- Foreign key (to references table category)
+    id_category tinyint unsigned NOT NULL, -- Foreign key (to references table category)
     id_book smallint unsigned NOT NULL, -- Foreign key (to references table book)
     FOREIGN KEY (id_category) REFERENCES category(id_category),
     FOREIGN KEY (id_book) REFERENCES book(id_book)
