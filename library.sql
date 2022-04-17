@@ -120,7 +120,7 @@ CREATE TABLE book_category (
 
 -- Book return. Describes loans returned.
 CREATE TABLE book_return (
-	id_book_return int NOT NULL AUTO_INCREMENT, -- Primary key
+	id_book_return int unsigned NOT NULL AUTO_INCREMENT, -- Primary key
 	id_loan int unsigned NOT NULL, -- Foreign key (to references table loan)
 	return_date datetime NOT NULL, -- Loan return datetime
 	PRIMARY KEY (id_book_return),
