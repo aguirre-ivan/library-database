@@ -9,6 +9,7 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 <div style="text-align:center"><img src="erd.png" /></div>
 
 🔑: Primary Key
+
 🗝: Foreign Key
 
 ## Data Structure
