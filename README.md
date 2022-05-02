@@ -81,7 +81,7 @@ Book info.
 | ----------------- | :---------------------------------------- | :---------------------------------- |
 | id_book           | smallint unsigned NOT NULL AUTO_INCREMENT | Primary Key for a book              |
 | id_publisher      | smallint unsigned NOT NULL                | Foreign Key to publisher table      |
-| title             | varchar(255) NOT NULL                     | Book title                          |
+| title             | varchar(128) NOT NULL                     | Book title                          |
 | book_description  | text NULL                                 | Book description                    |
 | publication_date  | date NULL                                 | Book publication date               |
 | id_language       | smallint unsigned NOT NULL                | Foreign Key to book_language table  |

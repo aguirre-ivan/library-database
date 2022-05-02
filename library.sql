@@ -53,7 +53,7 @@ CREATE TABLE customer (
 CREATE TABLE book (
 	id_book smallint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
 	id_publisher smallint unsigned NOT NULL, -- Foreign key (to references table publisher)
-	title varchar(30) NOT NULL, -- Book title
+	title varchar(128) NOT NULL, -- Book title
 	book_description text NULL, -- Book description
 	publication_date date NULL, -- Book publication date
 	id_language smallint unsigned NOT NULL, -- Foreign key (to references table book_language)
