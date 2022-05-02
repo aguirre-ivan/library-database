@@ -1,4 +1,4 @@
-# Library Database
+# Library SQL Database
 
 A library database made in MySQL with books stock, authors, customers and loans. 
 
@@ -47,7 +47,7 @@ Match id_language with language name.
 
 | Column            | Type                                      | Description                         |
 | ----------------- | :--------------------------               | :---------------------------------- |
-| id_language       | tinyint unsigned NOT NULL AUTO_INCREMENT  | Primary Key for a language          |
+| id_language       | smallint unsigned NOT NULL AUTO_INCREMENT | Primary Key for a language          |
 | book_language     | varchar(30) NOT NULL                      | Book language name                  |
 
 ### Book status table
@@ -84,7 +84,7 @@ Book info.
 | title             | varchar(255) NOT NULL                     | Book title                          |
 | book_description  | text NULL                                 | Book description                    |
 | publication_date  | date NULL                                 | Book publication date               |
-| id_language       | tinyint unsigned NOT NULL                 | Foreign Key to book_language table  |
+| id_language       | smallint unsigned NOT NULL                | Foreign Key to book_language table  |
 
 ### Book inventory table
 
@@ -156,3 +156,16 @@ Books returns. Describes loans (from loan table) returned.
 | id_book_return    | int unsigned NOT NULL AUTO_INCREMENT      | Primary Key for a book return       |
 | id_loan           | int unsigned NOT NULL                     | Foreign Key to loan table           |
 | return_date       | datetime NOT NULL                         | Loan return date time               |
+
+## Views
+
+Just run [views_creation](views_creation.sql)
+
+## Data entry script
+
+Just run [data_entry_script](data_entry_script.sql)
+
+Fake data from [Mockaroo]([mockaroo.com](https://mockaroo.com/)):
+
+- Book titles are actually movie titles.
+- Books description are sentences chosen randomly from lorem ipsum.

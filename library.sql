@@ -25,7 +25,7 @@ CREATE TABLE publisher (
 
 -- Match id_language with language name.
 CREATE TABLE book_language (
-	id_language tinyint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
+	id_language smallint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
 	book_language varchar(30) NOT NULL, -- Book language
 	PRIMARY KEY (id_language)
 );
@@ -56,7 +56,7 @@ CREATE TABLE book (
 	title varchar(30) NOT NULL, -- Book title
 	book_description text NULL, -- Book description
 	publication_date date NULL, -- Book publication date
-	id_language tinyint unsigned NOT NULL, -- Foreign key (to references table book_language)
+	id_language smallint unsigned NOT NULL, -- Foreign key (to references table book_language)
 	PRIMARY KEY (id_book),
 	FOREIGN KEY (id_publisher) REFERENCES publisher(id_publisher),
 	FOREIGN KEY (id_language) REFERENCES book_language(id_language)
