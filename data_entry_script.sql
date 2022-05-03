@@ -170,6 +170,7 @@ INSERT INTO book_language VALUES (NULL, 'Danish');
 INSERT INTO book_status VALUES (NULL, 'Ok');
 INSERT INTO book_status VALUES (NULL, 'Lost');
 INSERT INTO book_status VALUES (NULL, 'Destroyed');
+INSERT INTO book_status VALUES (NULL, 'Borrowed');
 
 -- Table customer
 INSERT INTO customer VALUES (NULL, 'Luis', 'Bortolussi', '45052263', '5716627961', 'lbortolussi0@creativecommons.org', '1950-12-03');
