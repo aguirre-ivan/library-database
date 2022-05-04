@@ -14,6 +14,8 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ## Data Structure
 
+Just run the [tables creation script](library_tables_creation.sql).
+
 ### Country table
 
 Match id_country with country name.
