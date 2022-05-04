@@ -169,7 +169,7 @@ INSERT INTO book_language VALUES (NULL, 'Chinese');
 INSERT INTO book_language VALUES (NULL, 'Danish');
 
 -- Table book_status
-INSERT INTO book_status VALUES (NULL, 'Ok');
+INSERT INTO book_status VALUES (NULL, 'Stock');
 INSERT INTO book_status VALUES (NULL, 'Lost');
 INSERT INTO book_status VALUES (NULL, 'Destroyed');
 INSERT INTO book_status VALUES (NULL, 'Borrowed');
