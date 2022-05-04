@@ -1,5 +1,7 @@
 USE library;
 
+-- Views creation
+
 -- View book_info
 CREATE OR REPLACE VIEW book_info AS (
     SELECT

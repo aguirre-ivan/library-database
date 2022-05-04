@@ -2,6 +2,8 @@ DROP SCHEMA IF EXISTS library;
 CREATE SCHEMA library;
 USE library;
 
+-- Tables creation
+
 -- Match id_country with country name.
 CREATE TABLE country (
 	id_country tinyint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
