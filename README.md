@@ -223,7 +223,7 @@ Show loans by book order by times_borrowed.
 
 ### Overdue loans view
 
-Show overdue loans order by days past due.
+Show overdue loans order by due date.
 
 | Column            | Description                         |
 | ----------------- | :---------------------------------- |
@@ -234,7 +234,6 @@ Show overdue loans order by days past due.
 | phone             | Customer phone                      |
 | email             | Customer email                      |
 | due_date          | Due date                            |
-| days_past_due     | Days past due                       |
 
 ### Borrowed books view
 

@@ -70,8 +70,7 @@ CREATE OR REPLACE VIEW overdue_loans AS (
         CONCAT(c.first_name, " ", c.last_name) AS customer,
         c.phone,
         c.email,
-        l.due_date,
-        TIMESTAMPDIFF(DAY, l.due_date, CURDATE()) AS days_past_due
+        l.due_date
     FROM loan AS l
     INNER JOIN customer AS c
 		ON l.id_customer = c.id_customer
@@ -83,7 +82,7 @@ CREATE OR REPLACE VIEW overdue_loans AS (
 		SELECT br.id_loan
         FROM book_return AS br
     )
-    ORDER BY 7 DESC
+    ORDER BY l.due_date ASC
 );
 
 -- View borrowed_books
