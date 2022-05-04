@@ -23,18 +23,18 @@ CREATE TABLE publisher (
 	PRIMARY KEY (id_publisher)
 );
 
--- Match id_language with language name.
+-- Match id_book_language with language name.
 CREATE TABLE book_language (
-	id_language smallint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
+	id_book_language smallint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
 	book_language varchar(30) NOT NULL, -- Book language
-	PRIMARY KEY (id_language)
+	PRIMARY KEY (id_book_language)
 );
 
--- Match id_status with book status. Book status can be borrowed, lost, destroyed, etc.
+-- Match id_book_status with book status. Book status can be borrowed, lost, destroyed, etc.
 CREATE TABLE book_status (
-	id_status tinyint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
+	id_book_status tinyint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
 	book_status varchar(30) NOT NULL, -- Book status
-	PRIMARY KEY (id_status)
+	PRIMARY KEY (id_book_status)
 );
 
 -- Library customers info.
@@ -56,20 +56,20 @@ CREATE TABLE book (
 	title varchar(128) NOT NULL, -- Book title
 	book_description text NULL, -- Book description
 	publication_date date NULL, -- Book publication date
-	id_language smallint unsigned NOT NULL, -- Foreign key (to references table book_language)
+	id_book_language smallint unsigned NOT NULL, -- Foreign key (to references table book_language)
 	PRIMARY KEY (id_book),
 	FOREIGN KEY (id_publisher) REFERENCES publisher(id_publisher),
-	FOREIGN KEY (id_language) REFERENCES book_language(id_language)
+	FOREIGN KEY (id_book_language) REFERENCES book_language(id_book_language)
 );
 
 -- Match book copies with id_book from book table and its status from book_status table.
 CREATE TABLE book_inventory (
 	id_book_inventory smallint unsigned NOT NULL AUTO_INCREMENT, -- Primary key
 	id_book smallint unsigned NOT NULL, -- Foreign key (to references table book)
-	id_status tinyint unsigned NOT NULL, -- Foreign key (to references book_status)
+	id_book_status tinyint unsigned NOT NULL, -- Foreign key (to references book_status)
 	PRIMARY KEY (id_book_inventory),
 	FOREIGN KEY (id_book) REFERENCES book(id_book),
-	FOREIGN KEY (id_status) REFERENCES book_status(id_status)
+	FOREIGN KEY (id_book_status) REFERENCES book_status(id_book_status)
 );
 
 -- Book copies storage location. With id_book_inventory (from book_inventory table), shows its shelf number and shelf_section number.
