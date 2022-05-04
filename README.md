@@ -43,20 +43,20 @@ Match id_publisher with publisher name.
 
 ### Book language table
 
-Match id_language with language name.
+Match id_book_language with language name.
 
 | Column            | Type                                      | Description                         |
 | ----------------- | :--------------------------               | :---------------------------------- |
-| id_language       | smallint unsigned NOT NULL AUTO_INCREMENT | Primary Key for a language          |
+| id_book_language  | smallint unsigned NOT NULL AUTO_INCREMENT | Primary Key for a language          |
 | book_language     | varchar(30) NOT NULL                      | Book language name                  |
 
 ### Book status table
 
-Match id_status with book status. Book status can be borrowed, lost, destroyed, etc.
+Match id_book_status with book status. Book status can be borrowed, lost, destroyed, etc.
 
 | Column            | Type                                      | Description                         |
 | ----------------- | :--------------------------               | :---------------------------------- |
-| id_status         | tinyint unsigned NOT NULL AUTO_INCREMENT  | Primary Key for a book status       |
+| id_book_status    | tinyint unsigned NOT NULL AUTO_INCREMENT  | Primary Key for a book status       |
 | book_status       | varchar(30) NOT NULL                      | Book status name                    |
 
 ### Customer table
@@ -84,7 +84,7 @@ Book info.
 | title             | varchar(128) NOT NULL                     | Book title                          |
 | book_description  | text NULL                                 | Book description                    |
 | publication_date  | date NULL                                 | Book publication date               |
-| id_language       | smallint unsigned NOT NULL                | Foreign Key to book_language table  |
+| id_book_language       | smallint unsigned NOT NULL                | Foreign Key to book_language table  |
 
 ### Book inventory table
 
@@ -94,7 +94,7 @@ Match book copies with id_book from book table and its status from book_status t
 | ----------------- | :---------------------------------------- | :---------------------------------- |
 | id_book_inventory | smallint unsigned NOT NULL AUTO_INCREMENT | Primary Key for a book copy         |
 | id_book           | smallint unsigned NOT NULL                | Foreign Key to book table           |
-| id_status         | tinyint unsigned NOT NULL                 | Foreign Key to book status table    |
+| id_book_status    | tinyint unsigned NOT NULL                 | Foreign Key to book status table    |
 
 ### Storage location table
 
@@ -163,9 +163,94 @@ Just run [views_creation](views_creation.sql)
 
 ## Data entry script
 
-Just run [data_entry_script](data_entry_script.sql)
+Just run [data_entry_script.sql](data_entry_script.sql) for an example of data entry.
 
-Fake data from [Mockaroo]([mockaroo.com](https://mockaroo.com/)):
+Fake data from [Mockaroo](https://mockaroo.com/):
 
 - Book titles are actually movie titles.
 - Books description are sentences chosen randomly from lorem ipsum.
+
+
+## Views Structure
+
+Just run [views.sql](views.sql) for an example of views.
+
+### Book info view
+
+Show books info order by id_book.
+
+| Column            | Description                         |
+| ----------------- | :---------------------------------- |
+| id_book           | Book id                             |
+| title             | Book title                          |
+| book_description  | Book description                    |
+| publication_date  | Publication date                    |
+| publisher         | Publisher                           |
+| book_language     | Book language                       |
+
+
+### Author info view
+
+Show authors info order by id_author.
+
+| Column            | Description                         |
+| ----------------- | :---------------------------------- |
+| id_author         | Author id                           |
+| complete_name     | Author complete name                |
+| nationality       | Author nationality                  |
+
+### Lost books view
+
+Show lost books order by id_book.
+
+| Column            | Description                         |
+| ----------------- | :---------------------------------- |
+| id_book_inventory | Book inventory id                   |
+| id_book           | Book id                             |
+| title             | Book title                          |
+
+### Loans by book view
+
+Show loans by book order by times_borrowed.
+
+| Column            | Description                         |
+| ----------------- | :---------------------------------- |
+| id_book           | Book id                             |
+| title             | Book title                          |
+| times_borrowed    | Times borrowed                      |
+
+### Overdue loans view
+
+Show overdue loans order by days past due.
+
+| Column            | Description                         |
+| ----------------- | :---------------------------------- |
+| id_loan           | Loan id                             |
+| id_book_inventory | Book inventory id                   |
+| id_customer       | Customer id                         |
+| customer          | Customer complete name              |
+| phone             | Customer phone                      |
+| email             | Customer email                      |
+| due_date          | Due date                            |
+| days_past_due     | Days past due                       |
+
+### Borrowed books view
+
+Show borrowed books order by expected return.
+
+| Column            | Description                         |
+| ----------------- | :---------------------------------- |
+| id_book_inventory | Book inventory id                   |
+| id_book           | Book id                             |
+| title             | Book title                          |
+| loan_date         | Loan date                           |
+| expected_return   | Due date                            |
+
+### Available books view
+
+Show available books and its quantity in stock order by id_book.
+
+| Column            | Description                         |
+| ----------------- | :---------------------------------- |
+| id_book           | Book id                             |
+| quantity_in_stock | Quantity in stock                   |
