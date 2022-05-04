@@ -13,7 +13,7 @@ CREATE OR REPLACE VIEW book_info AS (
     INNER JOIN publisher AS p
         ON b.id_publisher = p.id_publisher
     INNER JOIN book_language AS bl
-        ON b.id_language = bl.id_language
+        ON b.id_book_language = bl.id_book_language
     ORDER BY 1
 );
 
@@ -63,9 +63,9 @@ CREATE OR REPLACE VIEW loans_by_book AS (
 CREATE OR REPLACE VIEW overdue_loans AS (
     SELECT
         l.id_loan,
-        l.id_customer,
         l.id_book_inventory,
-        CONCAT(c.first_name, c.last_name) AS customer,
+        l.id_customer,
+        CONCAT(c.first_name, " ", c.last_name) AS customer,
         c.phone,
         c.email,
         l.due_date,
@@ -103,4 +103,18 @@ CREATE OR REPLACE VIEW borrowed_books AS (
 		SELECT br.id_loan
 		FROM book_return AS br
 	)
+    ORDER BY 5 DESC
+);
+
+-- View available_books
+CREATE OR REPLACE VIEW available_books AS (
+    SELECT
+		bi.id_book,
+        COUNT(bi.id_book_inventory) as quantity_in_stock
+	FROM book_inventory AS bi
+	INNER JOIN book_status AS bs
+		ON bi.id_book_status = bs.id_book_status
+	WHERE bs.book_status LIKE "Stock"
+    GROUP BY 1
+    ORDER BY 1
 );
