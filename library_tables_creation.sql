@@ -1,8 +1,9 @@
 DROP SCHEMA IF EXISTS library;
 CREATE SCHEMA library;
-USE library;
 
 -- Tables creation
+
+USE library;
 
 -- Match id_country with country name.
 CREATE TABLE country (

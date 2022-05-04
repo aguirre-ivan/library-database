@@ -1,6 +1,6 @@
-USE library;
-
 -- Views creation
+
+USE library;
 
 -- View book_info
 CREATE OR REPLACE VIEW book_info AS (

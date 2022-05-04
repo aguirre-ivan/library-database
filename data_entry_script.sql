@@ -1,6 +1,6 @@
-USE library;
-
 -- Data entry
+
+USE library;
 
 -- Table country
 INSERT INTO country VALUES (NULL, 'Ukraine');
