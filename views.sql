@@ -66,6 +66,7 @@ CREATE OR REPLACE VIEW overdue_loans AS (
     SELECT
         l.id_loan,
         l.id_book_inventory,
+        b.title,
         l.id_customer,
         CONCAT(c.first_name, " ", c.last_name) AS customer,
         c.phone,
@@ -76,6 +77,8 @@ CREATE OR REPLACE VIEW overdue_loans AS (
 		ON l.id_customer = c.id_customer
     INNER JOIN book_inventory AS bi
 		ON l.id_book_inventory = bi.id_book_inventory
+    INNER JOIN book AS b
+        ON bi.id_book = b.id_book
     INNER JOIN book_status AS bs
 		ON bi.id_book_status = bs.id_book_status
     WHERE bs.book_status LIKE 'Borrowed' AND l.id_loan NOT IN (
@@ -111,11 +114,14 @@ CREATE OR REPLACE VIEW borrowed_books AS (
 CREATE OR REPLACE VIEW available_books AS (
     SELECT
 		bi.id_book,
+        b.title,
         COUNT(bi.id_book_inventory) as quantity_in_stock
 	FROM book_inventory AS bi
 	INNER JOIN book_status AS bs
 		ON bi.id_book_status = bs.id_book_status
+    INNER JOIN book AS b
+        ON bi.id_book = b.id_book
 	WHERE bs.book_status LIKE "Stock"
     GROUP BY 1
-    ORDER BY 1
+    ORDER BY 1 ASC
 );

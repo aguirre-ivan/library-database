@@ -229,6 +229,7 @@ Show overdue loans order by due date.
 | ----------------- | :---------------------------------- |
 | id_loan           | Loan id                             |
 | id_book_inventory | Book inventory id                   |
+| title             | Book title                          |
 | id_customer       | Customer id                         |
 | customer          | Customer complete name              |
 | phone             | Customer phone                      |
@@ -254,4 +255,5 @@ Show available books and its quantity in stock order by id_book.
 | Column            | Description                         |
 | ----------------- | :---------------------------------- |
 | id_book           | Book id                             |
+| title             | Book title                          |
 | quantity_in_stock | Quantity in stock                   |
