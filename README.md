@@ -257,3 +257,9 @@ Show available books and its quantity in stock order by id_book.
 | id_book           | Book id                             |
 | title             | Book title                          |
 | quantity_in_stock | Quantity in stock                   |
+
+## Functions
+
+In [functions.sql](functions.sql):
+- get_available_stock_book
+- get_book_times_borrowed
