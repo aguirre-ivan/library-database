@@ -4,6 +4,15 @@ A library database made in MySQL with books stock, authors, customers and loans.
 
 SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
+## Content
+
+- [Entity-relationship diagram](entity-relationship-diagram.png)
+- [Tables creation](library_tables_creation.sql)
+- [Data entry](data_entry_script.sql)
+- [Views](views.sql)
+- [Functions](functions.sql)
+- [Stored procedures](stored_procedures.sql)
+
 ## Entity–relationship diagram
 
 <div style="text-align:center"><img src="entity-relationship-diagram.png" /></div>
@@ -261,5 +270,15 @@ Show available books and its quantity in stock order by id_book.
 ## Functions
 
 In [functions.sql](functions.sql):
+
 - get_available_stock_book
 - get_book_times_borrowed
+
+## Stored procedures
+
+In [stored_procedures.sql](stored_procedures.sql):
+
+- order_books_by
+- insert_or_delete_book_category
+- insert_book_category
+- delete_book_category
