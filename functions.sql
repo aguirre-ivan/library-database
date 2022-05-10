@@ -1,5 +1,6 @@
 USE library;
 
+
 -- Get available stock book
 
 DROP function IF EXISTS `get_available_stock_book`;
@@ -23,6 +24,7 @@ BEGIN
 END;$$
 
 DELIMITER ;
+
 
 -- Get book times borrowed
 

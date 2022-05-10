@@ -2,6 +2,7 @@ USE `library`;
 
 
 -- SP order books by
+
 DROP procedure IF EXISTS `order_books_by`;
 
 DELIMITER $$
@@ -25,6 +26,7 @@ DELIMITER ;
 
 
 -- SP insert or delete book category
+
 DROP procedure IF EXISTS `insert_or_delete_book_category`;
 
 DELIMITER $$
@@ -55,6 +57,7 @@ DELIMITER ;
 
 
 -- SP insert book category
+
 DROP procedure IF EXISTS `insert_book_category`;
 
 DELIMITER $$
@@ -71,6 +74,7 @@ DELIMITER ;
 
 
 -- SP delete book category
+
 DROP procedure IF EXISTS `delete_book_category`;
 
 DELIMITER $$
