@@ -10,6 +10,8 @@ USE `library`$$
 CREATE PROCEDURE `order_books_by` (IN column_to_order_by VARCHAR(30), IN order_way VARCHAR(4))
 -- Order book table by column_to_order_by parameter. 
 -- order_way = ASC/DESC
+-- Example:
+-- CALL order_books_by("id_publisher", "ASC");
 BEGIN
 	IF column_to_order_by <> "" THEN
 		SET @order_query = CONCAT_WS(" ", "ORDER BY", column_to_order_by, order_way); -- query order by
@@ -36,6 +38,9 @@ CREATE PROCEDURE `insert_or_delete_book_category` (
 	IN id_category tinyint,
 	IN id_book tinyint)
 -- Insert or delete an id_book-id_category match from book_category table depending on `statement_in`
+-- Examples:
+-- CALL insert_or_delete_book_category("DELETE", 1, 1);
+-- CALL insert_or_delete_book_category("INSERT", 2, 2);
 proc_label: BEGIN
 	IF UPPER(statement_in) LIKE "DELETE" THEN
 		-- DELETE STATEMENT
@@ -66,6 +71,8 @@ CREATE PROCEDURE `insert_book_category` (
 	IN id_category tinyint,
 	IN id_book tinyint)
 -- Inserts an id_book-id_category match from book_category table (using SP `insert_or_delete_book_category`)
+-- Example:
+-- CALL insert_book_category(1, 1);
 BEGIN
     CALL insert_or_delete_book_category("INSERT", id_category, id_book); -- Call SP with "INSERT" argument
 END$$
@@ -83,6 +90,8 @@ CREATE PROCEDURE `delete_book_category` (
 	IN id_category tinyint,
 	IN id_book tinyint)
 -- Deletes an id_book-id_category match from book_category table (using SP `insert_or_delete_book_category`)
+-- Example:
+-- CALL delete_book_category(1, 1);
 BEGIN
     CALL insert_or_delete_book_category("DELETE", id_category, id_book); -- Call SP with "DELETE" argument
 END$$
