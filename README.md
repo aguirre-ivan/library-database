@@ -282,3 +282,5 @@ In [stored_procedures.sql](stored_procedures.sql):
 - insert_or_delete_book_category
 - insert_book_category
 - delete_book_category
+
+*See [examples](sp_examples.sql)*
