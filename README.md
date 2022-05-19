@@ -22,6 +22,10 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 🗝: Foreign Key
 
+### MySQL workbench entity-relationship diagram
+
+<div style="text-align:center"><img src="workbench-er-diagram.png" /></div>
+
 ## Data Structure
 
 Just run the [tables creation script](library_tables_creation.sql).
