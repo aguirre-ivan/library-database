@@ -122,16 +122,8 @@ USE `library`$$
 CREATE TRIGGER `library`.`loan_BEFORE_INSERT` BEFORE INSERT ON `loan`
 FOR EACH ROW
 BEGIN
-    DECLARE id_borrowed_status tinyint unsigned;
-
-    SET id_borrowed_status := (
-        SELECT id_book_status
-        FROM book_status
-        WHERE UPPER(book_status) LIKE "BORROWED"
-    );
-
 	UPDATE book_inventory
-    SET id_book_status = id_borrowed_status
+    SET id_book_status = get_id_book_status("Borrowed")
     WHERE id_book_inventory = (NEW.id_book_inventory);
 END$$
 DELIMITER ;
@@ -208,14 +200,7 @@ USE `library`$$
 CREATE TRIGGER `library`.`book_return_BEFORE_DELETE` BEFORE DELETE ON `book_return`
 FOR EACH ROW
 BEGIN
-    DECLARE id_stock_status tinyint unsigned;
     DECLARE id_book_inventory_to_update int unsigned;
-
-	SET id_stock_status := (
-        SELECT id_book_status
-        FROM book_status
-        WHERE UPPER(book_status) LIKE "BORROWED"
-    );
 
     SET id_book_inventory_to_update := (
         SELECT l.id_book_inventory
@@ -226,7 +211,7 @@ BEGIN
     );
 
 	UPDATE book_inventory
-    SET id_book_status = id_stock_status
+    SET id_book_status = get_id_book_status("Borrowed")
     WHERE id_book_inventory = id_book_inventory_to_update;
 END$$
 DELIMITER ;
@@ -242,7 +227,7 @@ WHERE id_book_inventory = 80;
 
 
 -- Trigger after insert in book_return table
--- Updates book status to "stock" in book_inventory table
+-- Updates book status to "in stock" in book_inventory table
 DROP TRIGGER IF EXISTS `library`.`book_return_AFTER_INSERT`;
 
 DELIMITER $$
@@ -250,14 +235,7 @@ USE `library`$$
 CREATE TRIGGER `library`.`book_return_AFTER_INSERT` AFTER INSERT ON `book_return`
 FOR EACH ROW
 BEGIN
-    DECLARE id_stock_status tinyint unsigned;
     DECLARE id_book_inventory_to_update int unsigned;
-
-	SET id_stock_status := (
-        SELECT id_book_status
-        FROM book_status
-        WHERE UPPER(book_status) LIKE "STOCK"
-    );
 
     SET id_book_inventory_to_update := (
         SELECT l.id_book_inventory
@@ -268,7 +246,7 @@ BEGIN
     );
 
 	UPDATE book_inventory
-    SET id_book_status = id_stock_status
+    SET id_book_status = get_id_book_status("Stock")
     WHERE id_book_inventory = id_book_inventory_to_update;
 END$$
 DELIMITER ;

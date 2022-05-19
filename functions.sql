@@ -12,6 +12,7 @@ RETURNS INT
 READS SQL DATA
 BEGIN
 	DECLARE available_stock INT;
+
     SET available_stock = (
 		SELECT
 			COUNT(bi.id_book_inventory) AS available_stock
@@ -20,6 +21,7 @@ BEGIN
 			ON bi.id_book_status = bs.id_book_status
         WHERE bi.id_book = id_book AND bs.book_status LIKE 'Stock'
         );
+
 	RETURN available_stock;
 END;$$
 
@@ -37,6 +39,7 @@ RETURNS INT
 READS SQL DATA
 BEGIN
 	DECLARE times_borrowed INT;
+
     SET times_borrowed = (
 		SELECT
 			COUNT(l.id_loan) AS times_borrowed
@@ -47,7 +50,32 @@ BEGIN
 			ON bi.id_book = b.id_book
         WHERE b.id_book = id_book
         );
+
 	RETURN times_borrowed;
+END;$$
+
+DELIMITER ;
+
+
+-- Get id book status from book status table
+
+DROP function IF EXISTS `get_id_book_status`;
+
+DELIMITER $$
+
+CREATE FUNCTION `get_id_book_status` (book_status_argument VARCHAR(30))
+RETURNS TINYINT UNSIGNED
+READS SQL DATA
+BEGIN
+	DECLARE id_status_result tinyint unsigned;
+
+	SET id_status_result := (
+        SELECT id_book_status
+        FROM book_status
+        WHERE UPPER(book_status) LIKE UPPER(book_status_argument)
+    );
+
+	RETURN id_status_result;
 END;$$
 
 DELIMITER ;
