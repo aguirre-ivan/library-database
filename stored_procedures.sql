@@ -95,3 +95,42 @@ CREATE PROCEDURE `delete_book_category` (
 BEGIN
     CALL insert_or_delete_book_category("DELETE", id_category, id_book); -- Call SP with "DELETE" argument
 END$$
+
+
+-- SP update book_status in book_inventory table
+DROP procedure IF EXISTS `update_book_status`;
+
+DELIMITER $$
+USE `library`$$
+CREATE PROCEDURE `update_book_status` (
+	IN id_book_inventory_argument tinyint unsigned,
+	IN id_book_status_argument tinyint unsigned)
+BEGIN
+    UPDATE book_inventory
+    SET id_book_status = id_book_status_argument
+    WHERE id_book_inventory = id_book_inventory_argument;
+END$$
+
+
+-- SP update book_status in book_inventory table, depending id_book_return from book_return table. This SP uses update_book_status SP.
+DROP procedure IF EXISTS `update_book_status_from_id_book_return`;
+
+DELIMITER $$
+USE `library`$$
+CREATE PROCEDURE `update_book_status_from_id_book_return` (
+	IN id_book_return_argument tinyint unsigned,
+	IN id_book_status_argument tinyint unsigned)
+BEGIN
+	SET @id_book_inventory_to_update = (
+        SELECT l.id_book_inventory
+        FROM loan AS l
+		INNER JOIN book_return AS br
+			ON l.id_loan = br.id_loan
+		WHERE br.id_book_return = id_book_return_argument
+    );
+
+    CALL update_book_status(
+		@id_book_inventory_to_update,
+		id_book_status_argument
+	);
+END$$

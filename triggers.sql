@@ -122,9 +122,10 @@ USE `library`$$
 CREATE TRIGGER `library`.`loan_BEFORE_INSERT` BEFORE INSERT ON `loan`
 FOR EACH ROW
 BEGIN
-	UPDATE book_inventory
-    SET id_book_status = get_id_book_status("Borrowed")
-    WHERE id_book_inventory = (NEW.id_book_inventory);
+	CALL update_book_status(
+		NEW.id_book_inventory,
+		get_id_book_status("Borrowed")
+    );
 END$$
 DELIMITER ;
 
@@ -200,19 +201,10 @@ USE `library`$$
 CREATE TRIGGER `library`.`book_return_BEFORE_DELETE` BEFORE DELETE ON `book_return`
 FOR EACH ROW
 BEGIN
-    DECLARE id_book_inventory_to_update int unsigned;
-
-    SET id_book_inventory_to_update := (
-        SELECT l.id_book_inventory
-        FROM loan AS l
-		INNER JOIN book_return AS br
-			ON l.id_loan = br.id_loan
-		WHERE br.id_book_return = OLD.id_book_return
+	CALL update_book_status_from_id_book_return(
+		OLD.id_book_return,
+        get_id_book_status("Borrowed")
     );
-
-	UPDATE book_inventory
-    SET id_book_status = get_id_book_status("Borrowed")
-    WHERE id_book_inventory = id_book_inventory_to_update;
 END$$
 DELIMITER ;
 
@@ -235,19 +227,10 @@ USE `library`$$
 CREATE TRIGGER `library`.`book_return_AFTER_INSERT` AFTER INSERT ON `book_return`
 FOR EACH ROW
 BEGIN
-    DECLARE id_book_inventory_to_update int unsigned;
-
-    SET id_book_inventory_to_update := (
-        SELECT l.id_book_inventory
-        FROM loan AS l
-		INNER JOIN book_return AS br
-			ON l.id_loan = br.id_loan
-		WHERE br.id_book_return = NEW.id_book_return
+	CALL update_book_status_from_id_book_return(
+		NEW.id_book_return,
+        get_id_book_status("Stock")
     );
-
-	UPDATE book_inventory
-    SET id_book_status = get_id_book_status("Stock")
-    WHERE id_book_inventory = id_book_inventory_to_update;
 END$$
 DELIMITER ;
 
