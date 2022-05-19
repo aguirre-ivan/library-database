@@ -6,12 +6,13 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ## Content
 
-- [Entity-relationship diagram](entity-relationship-diagram.png)
-- [Tables creation](library_tables_creation.sql)
-- [Data entry](data_entry_script.sql)
-- [Views](views.sql)
-- [Functions](functions.sql)
-- [Stored procedures](stored_procedures.sql)
+1. [Entity-relationship diagram](entity-relationship-diagram.png)
+2. [Tables creation](library_tables_creation.sql)
+3. [Data entry](data_entry_script.sql)
+4. [Views](views.sql)
+5. [Functions](functions.sql)
+6. [Stored procedures](stored_procedures.sql)
+7. [Triggers](triggers.sql)
 
 ## Entity–relationship diagram
 
@@ -284,3 +285,51 @@ In [stored_procedures.sql](stored_procedures.sql):
 - delete_book_category
 
 *See [examples](sp_examples.sql)*
+
+## Triggers
+
+In [triggers.sql](triggers.sql):
+
+### Loan table triggers
+
+Log statements table (for 'INSERT', 'DELETE'):
+
+| Column             | Type                            | Description                         |
+| ------------------ | :------------------------------ | :---------------------------------- |
+| id_statement       | tinyint unsigned AUTO_INCREMENT | Primary Key for a statement         |
+| statement          | varchar(6) NOT NULL             | Statement                           |
+
+Log loan table for loan table triggers:
+
+| Column             | Type                            | Description                           |
+| ------------------ | :------------------------------ | :------------------------------------ |
+| id_log             | int unsigned AUTO_INCREMENT     | Primary Key for a log                 |
+| id_statement       | tinyint unsigned                | Foreign Key to statement table        |
+| id_loan            | int unsigned                    | id_loan from loan table               |
+| id_customer        | smallint unsigned               | id_customer from loan table           |
+| id_book_inventory  | smallint unsigned               | id_book_inventory from loan table     |
+| user_running_query | varchar(80)                     | User running the query                |
+| log_date           | date                            | Log date                              |
+| log_time           | time                            | Log time                              |
+
+- **loan_AFTER_INSERT**: Updates log loan table.
+- **loan_AFTER_DELETE**: Updates log loan table.
+- **loan_BEFORE_INSERT**: Updates book status to borrowed in book_inventory table.
+
+### Book return table triggers
+
+Log deleted book return table for book return table triggers:
+
+| Column             | Type                            | Description                           |
+| ------------------ | :------------------------------ | :------------------------------------ |
+| id_log             | int unsigned AUTO_INCREMENT     | Primary Key for a log                 |
+| id_loan            | int unsigned                    | id_loan from book_return table        |
+| id_book_return     | int unsigned                    | id_book_return from book_return table |
+| return_date        | datetime                        | return_date from book_return table    |
+| user_running_query | varchar(80)                     | User running the query                |
+| log_date           | date                            | Log date                              |
+| log_time           | time                            | Log time                              |
+
+- **book_return_AFTER_DELETE**: Updates log deleted book return table.
+- **book_return_BEFORE_DELETE**: Updates book status to borrowed in book_inventory table.
+- **book_return_AFTER_INSERT**: Updates book status to stock in book_inventory table.
