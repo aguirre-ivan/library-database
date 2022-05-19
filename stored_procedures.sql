@@ -97,7 +97,8 @@ BEGIN
 END$$
 
 
--- SP update book_status in book_inventory table
+-- SP update book status
+
 DROP procedure IF EXISTS `update_book_status`;
 
 DELIMITER $$
@@ -105,6 +106,7 @@ USE `library`$$
 CREATE PROCEDURE `update_book_status` (
 	IN id_book_inventory_argument tinyint unsigned,
 	IN id_book_status_argument tinyint unsigned)
+-- Updates book_status in book_inventory table.
 BEGIN
     UPDATE book_inventory
     SET id_book_status = id_book_status_argument
@@ -112,7 +114,8 @@ BEGIN
 END$$
 
 
--- SP update book_status in book_inventory table, depending id_book_return from book_return table. This SP uses update_book_status SP.
+-- SP update book status in book inventory table
+
 DROP procedure IF EXISTS `update_book_status_from_id_book_return`;
 
 DELIMITER $$
@@ -120,6 +123,8 @@ USE `library`$$
 CREATE PROCEDURE `update_book_status_from_id_book_return` (
 	IN id_book_return_argument tinyint unsigned,
 	IN id_book_status_argument tinyint unsigned)
+-- Update book_status in book_inventory table, depending id_book_return from book_return table.
+-- This SP uses update_book_status SP.
 BEGIN
 	SET @id_book_inventory_to_update = (
         SELECT l.id_book_inventory
@@ -132,5 +137,39 @@ BEGIN
     CALL update_book_status(
 		@id_book_inventory_to_update,
 		id_book_status_argument
+	);
+END$$
+
+
+-- SP log into log loan table
+
+DROP procedure IF EXISTS `log_into_log_loan_table`;
+
+DELIMITER $$
+USE `library`$$
+CREATE PROCEDURE `log_into_log_loan_table` (
+	IN id_statement_argument tinyint unsigned,
+	IN id_loan_argument int unsigned,
+	IN id_customer_argument smallint unsigned,
+	IN id_book_inventory_argument smallint unsigned)
+-- Log into log_loan_table, depending arguments
+BEGIN
+	INSERT INTO `log_loan` (
+		id_statement,
+		id_loan,
+		id_customer,
+		id_book_inventory,
+		user_running_query,
+		log_date,
+		log_time
+	)
+	VALUES (
+		id_statement_argument, -- id_statement in log_statement table
+		id_loan_argument, -- id_loan from loan table
+		id_customer_argument, -- id_customer from loan table
+		id_book_inventory_argument, -- id_book_inventory from loan table
+		CURRENT_USER(), -- user running query
+		CURRENT_DATE(), -- log date
+		CURRENT_TIME() -- log time
 	);
 END$$

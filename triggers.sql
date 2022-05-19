@@ -40,24 +40,19 @@ USE `library`$$
 CREATE TRIGGER `library`.`loan_AFTER_INSERT` AFTER INSERT ON `loan`
 FOR EACH ROW
 BEGIN
-	INSERT INTO `log_loan` (
-		id_statement,
-		id_loan,
-		id_customer,
-		id_book_inventory,
-		user_running_query,
-		log_date,
-		log_time
-	)
-	VALUES (
-		1, -- 1 = 'INSERT' in log_statement table
-		NEW.id_loan, -- id_loan from loan table
-		NEW.id_customer, -- id_customer from loan table
-		NEW.id_book_inventory, -- id_book_inventory from loan table
-		CURRENT_USER(), -- user running query
-		CURRENT_DATE(), -- log date
-		CURRENT_TIME() -- log time
-	);
+	DECLARE id_statement_query VARCHAR(6);
+    SET id_statement_query := (
+		SELECT id_statement
+        FROM log_statement
+        WHERE statement LIKE 'INSERT'
+    );
+
+	CALL log_into_log_loan_table(
+		id_statement_query, -- 'INSERT' in log_statement table
+        NEW.id_loan, -- id_loan from loan table
+        NEW.id_customer, -- id_customer from loan table
+        NEW.id_book_inventory -- id_book_inventory from loan table
+    );
 END$$
 DELIMITER ;
 
@@ -71,24 +66,19 @@ USE `library`$$
 CREATE TRIGGER `library`.`loan_AFTER_DELETE` AFTER DELETE ON `loan`
 FOR EACH ROW
 BEGIN
-	INSERT INTO `log_loan` (
-		id_statement,
-		id_loan,
-		id_customer,
-		id_book_inventory,
-		user_running_query,
-		log_date,
-		log_time
-	)
-	VALUES (
-		2, -- 2 = 'DELETE' in log_statement table
-		OLD.id_loan, -- id_loan deleted from loan table
-		OLD.id_customer, -- id_customer deleted from loan table
-		OLD.id_book_inventory, -- id_book_inventory deleted from loan table
-		CURRENT_USER(), -- user running query
-		CURRENT_DATE(), -- log date
-		CURRENT_TIME() -- log time
-	);
+	DECLARE id_statement_query VARCHAR(6);
+    SET id_statement_query := (
+		SELECT id_statement
+        FROM log_statement
+        WHERE statement LIKE 'DELETE'
+    );
+
+	CALL log_into_log_loan_table(
+		id_statement_query, -- 'DELETE' in log_statement table
+        OLD.id_loan, -- id_loan from loan table
+        OLD.id_customer, -- id_customer from loan table
+        OLD.id_book_inventory -- id_book_inventory from loan table
+    );
 END$$
 DELIMITER ;
 
