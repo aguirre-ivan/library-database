@@ -278,6 +278,7 @@ In [functions.sql](functions.sql):
 
 - get_available_stock_book
 - get_book_times_borrowed
+- get_id_book_status
 
 ## Stored procedures
 
@@ -287,6 +288,9 @@ In [stored_procedures.sql](stored_procedures.sql):
 - insert_or_delete_book_category
 - insert_book_category
 - delete_book_category
+- update_book_status
+- update_book_status_from_id_book_return
+- log_into_log_loan_table
 
 *See [examples](sp_examples.sql)*
 
