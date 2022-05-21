@@ -2,6 +2,7 @@ USE library;
 
 
 -- Get available stock book
+-- This function returns available stock book. (n book_inventory stock)
 
 DROP function IF EXISTS `get_available_stock_book`;
 
@@ -29,6 +30,7 @@ DELIMITER ;
 
 
 -- Get book times borrowed
+-- This function returns book times borrowed
 
 DROP function IF EXISTS `get_book_times_borrowed`;
 
@@ -58,6 +60,7 @@ DELIMITER ;
 
 
 -- Get id book status from book status table
+-- This function returns id book status (from book_status table)
 
 DROP function IF EXISTS `get_id_book_status`;
 

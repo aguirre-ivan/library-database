@@ -173,10 +173,6 @@ Books returns. Describes loans (from loan table) returned.
 | id_loan           | int unsigned NOT NULL                     | Foreign Key to loan table           |
 | return_date       | datetime NOT NULL                         | Loan return date time               |
 
-## Views
-
-Just run [views_creation](views_creation.sql)
-
 ## Data entry script
 
 Just run [data_entry_script.sql](data_entry_script.sql) for an example of data entry.
@@ -185,7 +181,6 @@ Fake data from [Mockaroo](https://mockaroo.com/):
 
 - Book titles are actually movie titles.
 - Books description are sentences chosen randomly from lorem ipsum.
-
 
 ## Views Structure
 
@@ -276,23 +271,23 @@ Show available books and its quantity in stock order by id_book.
 
 In [functions.sql](functions.sql):
 
-- get_available_stock_book
-- get_book_times_borrowed
-- get_id_book_status
+- **get_available_stock_book**: Returns available stock book.
+- **get_book_times_borrowed**: Returns book times borrowed.
+- **get_id_book_status**: Returns `id_book_status` from `book_status` table, depending `book_status` parameter.
 
 ## Stored procedures
 
 In [stored_procedures.sql](stored_procedures.sql):
 
-- order_books_by
-- insert_or_delete_book_category
-- insert_book_category
-- delete_book_category
-- update_book_status
-- update_book_status_from_id_book_return
-- log_into_log_loan_table
+- **order_books_by**: Orders `book` table by `column_to_order_by` parameter (in `order_way` ASC/DESC).
+- **insert_or_delete_book_category**: inserts or deletes an `id_book-id_category` match from `book_category` table depending on `statement_in` (`"INSERT"`/`"DELETE"`).
+- **insert_book_category**: Inserts an `id_book-id_category` match from `book_category` table (using `insert_or_delete_book_category` sp).
+- **delete_book_category**: Deletes an `id_book-id_category` match from `book_category` table (using `insert_or_delete_book_category` sp).
+- **update_book_status**: Updates `book_status` in `book_inventory` table.
+- **update_book_status_from_id_book_return**: Updates `book_status` in `book_inventory` table, depending `id_book_return` from `book_return` table.
+- **log_into_log_loan_table**: Logs into `log_loan_table`, depending arguments.
 
-*See [examples](sp_examples.sql)*
+*See [examples](sp_examples.sql).*
 
 ## Triggers
 
