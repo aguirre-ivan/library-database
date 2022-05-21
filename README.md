@@ -13,6 +13,7 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 5. [Functions](functions.sql)
 6. [Stored procedures](stored_procedures.sql)
 7. [Triggers](triggers.sql)
+7. [Users creation](users_creation.sql)
 
 ## Entity–relationship diagram
 
@@ -336,3 +337,10 @@ Log deleted book return table for book return table triggers:
 - **book_return_AFTER_DELETE**: Updates log deleted book return table.
 - **book_return_BEFORE_DELETE**: Updates book status to borrowed in book_inventory table.
 - **book_return_AFTER_INSERT**: Updates book status to stock in book_inventory table.
+
+## Users creation
+
+A simple example of [users creation](users_creation.sql):
+
+- **'user_with_reading_grants'@'localhost'**: An user with only reading grants.
+- **'user_with_more_grants'@'localhost'**: An user with reading, insertion and modification grants.
