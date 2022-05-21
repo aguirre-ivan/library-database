@@ -96,6 +96,8 @@ BEGIN
     CALL insert_or_delete_book_category("DELETE", id_category, id_book); -- Call SP with "DELETE" argument
 END$$
 
+DELIMITER ;
+
 
 -- SP update book status
 
@@ -112,6 +114,8 @@ BEGIN
     SET id_book_status = id_book_status_argument
     WHERE id_book_inventory = id_book_inventory_argument;
 END$$
+
+DELIMITER ;
 
 
 -- SP update book status in book inventory table
@@ -139,6 +143,8 @@ BEGIN
 		id_book_status_argument
 	);
 END$$
+
+DELIMITER ;
 
 
 -- SP log into log loan table
@@ -173,3 +179,5 @@ BEGIN
 		CURRENT_TIME() -- log time
 	);
 END$$
+
+DELIMITER ;
