@@ -1,3 +1,8 @@
+-- Users creation --
+
+USE mysql;
+
+
 DROP user 'user_with_reading_grants'@'localhost';
 
 -- User with reading grants creation

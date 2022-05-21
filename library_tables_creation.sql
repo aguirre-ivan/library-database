@@ -1,7 +1,8 @@
+-- Tables creation --
+
 DROP SCHEMA IF EXISTS library;
 CREATE SCHEMA library;
 
--- Tables creation
 
 USE library;
 

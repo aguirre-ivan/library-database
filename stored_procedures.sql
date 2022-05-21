@@ -1,3 +1,5 @@
+-- Stored procedures --
+
 USE `library`;
 
 
