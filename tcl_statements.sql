@@ -36,3 +36,6 @@ INSERT INTO publisher VALUES (NULL, 'Aranzadi');
 INSERT INTO publisher VALUES (NULL, 'Tecnos');
 SAVEPOINT publisher_lot_8;
 -- ROLLBACK TO publisher_lot_4;
+
+
+-- SET AUTOCOMMIT = 1; -- Setting autocommit back to 1
