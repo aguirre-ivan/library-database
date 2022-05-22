@@ -13,7 +13,8 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 5. [Functions](functions.sql)
 6. [Stored procedures](stored_procedures.sql)
 7. [Triggers](triggers.sql)
-7. [Users creation](users_creation.sql)
+8. [Users creation](users_creation.sql)
+9. [TCL statements](tcl_statements.sql)
 
 ## Entity–relationship diagram
 
@@ -340,7 +341,14 @@ Log deleted book return table for book return table triggers:
 
 ## Users creation
 
-A simple example of [users creation](users_creation.sql):
+Simple [users creation](users_creation.sql) examples:
 
 - **'user_with_reading_grants'@'localhost'**: An user with only reading grants.
 - **'user_with_more_grants'@'localhost'**: An user with reading, insertion and modification grants.
+
+## TCL statements examples
+
+Simple [tcl statements](tcl_statements.sql) examples:
+
+- **`DELETE` statements on book return_table**: Deleting random registers from book_return table with `ROLLBACK` and `COMMIT` example.
+- **`INSERT` statements on publisher table**: Inserting registers on publisher table with `SAVEPOINT`s examples.
