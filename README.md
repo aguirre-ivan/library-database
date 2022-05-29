@@ -352,3 +352,9 @@ Simple [tcl statements](tcl_statements.sql) examples:
 
 - **`DELETE` statements on book return_table**: Deleting random registers from book_return table with `ROLLBACK` and `COMMIT` example.
 - **`INSERT` statements on publisher table**: Inserting registers on publisher table with `SAVEPOINT`s examples.
+
+## Database backup
+
+Data backup realized in [backup_20220529.sql](backup_20220529.sql). (Date: 2022-05-29)
+
+The backup is only data from all tables excepting log tables (*log_statement*, *log_loan*, *log_deleted_book_return* tables).
