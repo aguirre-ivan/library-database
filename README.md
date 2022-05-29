@@ -358,3 +358,9 @@ Simple [tcl statements](tcl_statements.sql) examples:
 Data backup realized in [backup_20220529.sql](backup_20220529.sql). (Date: 2022-05-29)
 
 The backup is only data from all tables excepting log tables (*log_statement*, *log_loan*, *log_deleted_book_return* tables).
+
+Usage:
+
+```
+$ mysql -u 'user' -p library < backup_20220529.sql
+```
