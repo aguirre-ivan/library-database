@@ -130,3 +130,39 @@ CREATE TABLE book_return (
 	PRIMARY KEY (id_book_return),
 	FOREIGN KEY (id_loan) REFERENCES loan(id_loan)
 );
+
+
+-- Log tables for triggers
+
+-- Log statements for log tables.
+CREATE TABLE IF NOT EXISTS log_statement (
+	id_statement tinyint unsigned AUTO_INCREMENT,
+	statement VARCHAR(6) NOT NULL,
+	PRIMARY KEY (id_statement)
+);
+
+-- Log loan table for loan table triggers.
+CREATE TABLE IF NOT EXISTS log_loan (
+    id_log int unsigned AUTO_INCREMENT, -- log id
+    id_statement tinyint unsigned, -- statement id from log_statement table
+    id_loan int unsigned, -- loan id from loan table
+	id_customer smallint unsigned, -- customer id from loan table
+    id_book_inventory smallint unsigned, -- book inventory id from loan table
+    user_running_query varchar(80), -- user running the query
+    log_date date, -- query date
+    log_time time, -- query time
+    PRIMARY KEY (id_log),
+    FOREIGN KEY (id_statement) REFERENCES log_statement(id_statement)
+);
+
+-- Log deleted book return table for book return table triggers.
+CREATE TABLE IF NOT EXISTS log_deleted_book_return (
+    id_log int unsigned AUTO_INCREMENT, -- log id
+    id_loan int unsigned, -- loan id from book_return table
+    id_book_return int unsigned, -- book return id from book_return table
+    return_date datetime, -- return date from book_return table
+    user_running_query varchar(80), -- user running the query
+    log_date date, -- query date
+    log_time time, -- query time
+    PRIMARY KEY (id_log)
+);

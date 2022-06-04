@@ -676,3 +676,7 @@ INSERT INTO book_return VALUES (NULL, 80, '2022-03-24');
 INSERT INTO book_return VALUES (NULL, 81, '2022-03-25');
 INSERT INTO book_return VALUES (NULL, 82, '2022-03-26');
 INSERT INTO book_return VALUES (NULL, 83, '2022-03-27');
+
+-- Statements data entry
+INSERT INTO log_statement VALUES (NULL, 'INSERT');
+INSERT INTO log_statement VALUES (NULL, 'DELETE');
