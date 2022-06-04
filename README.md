@@ -175,6 +175,14 @@ Books returns. Describes loans (from loan table) returned.
 | id_loan           | int unsigned NOT NULL                     | Foreign Key to loan table           |
 | return_date       | datetime NOT NULL                         | Loan return date time               |
 
+### Log tables
+
+*Tables explained in Triggers section.*
+
+- Log statement table
+- Log loan table
+- Log deleted book return table
+
 ## Data entry script
 
 Just run [data_entry_script.sql](data_entry_script.sql) for an example of data entry.
@@ -303,6 +311,8 @@ Log statements table (for 'INSERT', 'DELETE'):
 | ------------------ | :------------------------------ | :---------------------------------- |
 | id_statement       | tinyint unsigned AUTO_INCREMENT | Primary Key for a statement         |
 | statement          | varchar(6) NOT NULL             | Statement                           |
+
+Note: we need to run the [data entry script](data_entry_script.sql) first, because we need the registers `INSERT` and `DELETE`.
 
 Log loan table for loan table triggers:
 

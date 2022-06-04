@@ -5,6 +5,8 @@ USE library;
 
 -- loan TABLE TRIGGERS --
 
+-- Note: we need to run data_entry_script.sql first, because we use the log_statement table registers.
+
 
 -- Trigger after insert in loan table
 -- This trigger updates log loan table
