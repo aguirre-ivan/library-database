@@ -62,7 +62,8 @@ DELIMITER ;
 
 
 -- Get id book status from book status table
--- This function returns id book status (from book_status table)
+-- This function returns id book status (from book_status table).
+-- NULL if id_book not in book_status table.
 
 DROP function IF EXISTS `get_id_book_status`;
 

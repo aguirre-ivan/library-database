@@ -14,6 +14,7 @@ CREATE PROCEDURE `order_books_by` (IN column_to_order_by VARCHAR(30), IN order_w
 -- order_way = ASC/DESC
 -- Example:
 -- CALL order_books_by("id_publisher", "ASC");
+-- This stored procedure will return an error if the column_to_order_by doesn't exist in book table or if the order_way is not "ASC"/"DESC"/""
 BEGIN
 	IF column_to_order_by <> "" THEN
 		SET @order_query = CONCAT_WS(" ", "ORDER BY", column_to_order_by, order_way); -- query order by
@@ -108,9 +109,11 @@ DROP procedure IF EXISTS `update_book_status`;
 DELIMITER $$
 USE `library`$$
 CREATE PROCEDURE `update_book_status` (
-	IN id_book_inventory_argument tinyint unsigned,
+	IN id_book_inventory_argument smallint unsigned,
 	IN id_book_status_argument tinyint unsigned)
 -- Updates book_status in book_inventory table.
+-- Example:
+-- CALL update_book_status(1, 1);
 BEGIN
     UPDATE book_inventory
     SET id_book_status = id_book_status_argument
@@ -127,7 +130,7 @@ DROP procedure IF EXISTS `update_book_status_from_id_book_return`;
 DELIMITER $$
 USE `library`$$
 CREATE PROCEDURE `update_book_status_from_id_book_return` (
-	IN id_book_return_argument tinyint unsigned,
+	IN id_book_return_argument int unsigned,
 	IN id_book_status_argument tinyint unsigned)
 -- Update book_status in book_inventory table, depending id_book_return from book_return table.
 -- This SP uses update_book_status SP.
