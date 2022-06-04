@@ -289,7 +289,7 @@ In [functions.sql](functions.sql):
 
 In [stored_procedures.sql](stored_procedures.sql):
 
-- **order_books_by**: Orders `book` table by `column_to_order_by` parameter (in `order_way` ASC/DESC).
+- **order_books_by**: Orders `book` table by `column_to_order_by` parameter (in `order_way` ASC/DESC). This stored procedure will return an error if the column_to_order_by doesn't exist in book table or if the order_way is not "ASC"/"DESC"/""
 - **insert_or_delete_book_category**: inserts or deletes an `id_book-id_category` match from `book_category` table depending on `statement_in` (`"INSERT"`/`"DELETE"`).
 - **insert_book_category**: Inserts an `id_book-id_category` match from `book_category` table (using `insert_or_delete_book_category` sp).
 - **delete_book_category**: Deletes an `id_book-id_category` match from `book_category` table (using `insert_or_delete_book_category` sp).
