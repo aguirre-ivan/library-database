@@ -7,14 +7,15 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 ## Content
 
 1. [Entity-relationship diagram](#entityrelationship-diagram)
-2. [Tables creation](library_tables_creation.sql)
-3. [Data entry](data_entry_script.sql)
-4. [Views](views.sql)
-5. [Functions](functions.sql)
-6. [Stored procedures](stored_procedures.sql)
-7. [Triggers](triggers.sql)
-8. [Users creation](users_creation.sql)
-9. [TCL statements](tcl_statements.sql)
+2. [Tables creation](#data-structure)
+3. [Data entry](#data-entry-script)
+4. [Views](#views-structure)
+5. [Functions](#functions)
+6. [Stored procedures](#stored-procedures)
+7. [Triggers](#triggers)
+8. [Users creation](#users-creation)
+9. [TCL statements](#tcl-statements-examples)
+10. [Database backup](#database-backup)
 
 ## Entity–relationship diagram
 
