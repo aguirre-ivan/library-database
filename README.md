@@ -6,7 +6,7 @@ SQL project for [Coderhouse](https://www.coderhouse.com/online/sql).
 
 ## Content
 
-1. [Entity-relationship diagram](entity-relationship-diagram.png)
+1. [Entity-relationship diagram](#entityrelationship-diagram)
 2. [Tables creation](library_tables_creation.sql)
 3. [Data entry](data_entry_script.sql)
 4. [Views](views.sql)
